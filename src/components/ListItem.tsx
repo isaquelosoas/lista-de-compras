@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Pressable, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native"
+import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { IListItem } from "../interfaces/listItem.interface"
 import { colors } from "../style/colors.style"
 
@@ -7,11 +7,11 @@ export default function ListItem({ name, price, unity, quantity }: IListItem) {
   const [currentPrice, setCurrentPrice] = useState<string>(price.toFixed(2).toString())
   return (
     <View style={styles.container}>
-      <TouchableHighlight>
+      <TouchableOpacity>
         <View style={styles.checkContainer}>
           <View style={styles.checkbox}></View>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
       <View style={styles.details}>
         <Text style={styles.nameTxt}>{name}</Text>
         <Text style={styles.quantityTxt}>{`${quantity} ${unity}`}</Text>

@@ -16,9 +16,10 @@ export default function ListPage() {
   }
   return (
     <View style={styles.container}>
-      {showModal&&<Modal hideModal={()=>setShowModal(false)} children={<ModalForm />}/>}
+      {showModal&&<Modal hideModal={()=>setShowModal(false)} children={<ModalForm hideModal={()=>setShowModal(false)}/>}/>}
       <View style={styles.header}>
         <Text style={styles.headerTxt}>Lista de Compras</Text>
+        <AddItemButton showModal={()=>{setShowModal(true)}}/>
       </View>
       <View style={styles.contentContainer}>
         <FlatList
@@ -27,8 +28,8 @@ export default function ListPage() {
         >
 
         </FlatList>
-        <AddItemButton showModal={()=>setShowModal(true)}/>
       </View>
+      
     </View>
   )
 }
@@ -41,7 +42,9 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.primary,
     minHeight: 50,
-    padding: 15
+    padding: 15,
+    justifyContent:"space-between",
+    flexDirection:"row"
   },
   headerTxt: {
     color: colors.white,
