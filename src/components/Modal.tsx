@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native";
+import { Dimensions, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../style/colors.style";
 
 interface ModalProps{
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
 
     },
     modal:{
+        paddingBottom:50
     },
     outerArea:{
         position:"absolute",

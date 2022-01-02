@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native"
+import { Dimensions, FlatList, KeyboardAvoidingView, Platform, StyleSheet, Text, View } from "react-native"
+import { AddForm } from "./components/AddForm"
 import AddItemButton from "./components/AddItemButton"
 import ListItem from "./components/ListItem"
 import { Modal } from "./components/Modal"
@@ -15,22 +16,26 @@ export default function ListPage() {
     setData(newData)
   }
   return (
-    <View style={styles.container}>
-      {showModal&&<Modal hideModal={()=>setShowModal(false)} children={<ModalForm hideModal={()=>setShowModal(false)}/>}/>}
-      <View style={styles.header}>
-        <Text style={styles.headerTxt}>Lista de Compras</Text>
-        <AddItemButton showModal={()=>{setShowModal(true)}}/>
-      </View>
-      <View style={styles.contentContainer}>
-        <FlatList
-          data={data}
-          renderItem={({item})=><ListItem name={item.name} price={item.price} quantity={item.quantity} unity={item.unity}/>}
-        >
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}>
 
-        </FlatList>
+      <View style={styles.container}>
+        {showModal&&<Modal hideModal={()=>setShowModal(false)} children={<ModalForm form={<AddForm/>} hideModal={()=>setShowModal(false)}/>}/>}
+        <View style={styles.header}>
+          <Text style={styles.headerTxt}>Lista de Compras</Text>
+          <AddItemButton showModal={()=>{setShowModal(true)}}/>
+        </View>
+        <View style={styles.contentContainer}>
+          <FlatList
+            data={data}
+            renderItem={({item})=><ListItem name={item.name} price={item.price} quantity={item.quantity} unity={item.unity}/>}
+          >
+
+          </FlatList>
+        </View>
+        
       </View>
-      
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 

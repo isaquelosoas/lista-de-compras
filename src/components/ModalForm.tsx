@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Button, Pressable, StyleSheet, Text, View } from "react-native";
+import { Button, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../style/colors.style";
 
 interface ModalFormProps{
@@ -9,23 +9,23 @@ interface ModalFormProps{
 
 export function ModalForm({form, hideModal}:ModalFormProps){
     return(
-        <View style={styles.container}>
-            <Text style={styles.title}>Adicionar Produto</Text>
-            {form&&form}
-            <View style={styles.btnContainer}>
-                <Pressable onPress={hideModal}  >
-                    <View style={styles.button}>
-                        <Text>Cancelar</Text>
-                    </View>
-                </Pressable>
-                <Pressable onPress={hideModal}  >
-                    <View style={[styles.button,styles.btnConfirm]}>
-                        <Text style={styles.txtConfirm}>Confirmar</Text>
-                    </View>
-                </Pressable>
+            <View style={styles.container}>
+                <Text style={styles.title}>Adicionar Produto</Text>
+                {form&&form}
+                <View style={styles.btnContainer}>
+                    <Pressable onPress={hideModal}  >
+                        <View style={styles.button}>
+                            <Text>Cancelar</Text>
+                        </View>
+                    </Pressable>
+                    <Pressable onPress={hideModal}  >
+                        <View style={[styles.button,styles.btnConfirm]}>
+                            <Text style={styles.txtConfirm}>Confirmar</Text>
+                        </View>
+                    </Pressable>
+                </View>
+                
             </View>
-            
-        </View>
     )
 }
 const styles = StyleSheet.create({
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     },
     btnContainer:{
         flexDirection:"row",
-        marginTop:15
+        marginTop:15,
+        justifyContent:"flex-end"
     },
     button:{
         padding:10,
